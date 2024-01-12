@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
+  get 'discounts', to: 'products#index', as: 'discounted_products', discounted: true
   get 'archives', to: 'products#index', as: 'archived_products', archived: true
   get ':category', to: 'products#index', as: 'products_by_category',
     constraints: { category: /#{Product.categories.keys.join('|')}/ }
